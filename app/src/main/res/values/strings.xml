@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">QuizApp</string>
+    <string name="app_title">Quiz</string>
+    <string name="question_check">This is just a random text and it is not
+    part of the quiz questions</string>
+    <string name="true_button">True</string>
+    <string name="false_button">False</string>
+    <string name="previous_content">Previous Button</string>
+    <string name="next_content">Next Button</string>
+    <string name="counter_text">0 out of 100</string>
+    <string name="score_text">200</string>
+    <string name="high_score_text">10000</string>
+    <string name="correct_answer">Correct!</string>
+    <string name="wrong_answer">Wrong!</string>
+</resources>
