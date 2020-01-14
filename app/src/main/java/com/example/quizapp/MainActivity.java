@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        score = new Score();
+        prefs = new Prefs(MainActivity.this);
+
         counterText = findViewById(R.id.counter_text);
         scoreText = findViewById(R.id.score_text);
         highscoreText = findViewById(R.id.high_score_text);
@@ -130,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             scoreText.setText(MessageFormat.format("Current Score: {0}",
                                                     String.valueOf(score.getScore())));
         } else {
+            // TODO: check this assignment of scoreCounter = 0
+            scoreCounter = 0;
             score.setScore(scoreCounter);
             scoreText.setText(MessageFormat.format("Current Score: {0}",
                                                     String.valueOf(score.getScore())));
