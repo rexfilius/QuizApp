@@ -75,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     public void processFinished(ArrayList<Question> questionArrayList) {
                         questionText.setText(
                                 questionArrayList.get(currentQuestionIndex).getAnswer());
-                        counterText.setText(
-                                currentQuestionIndex + " / " + questionArrayList.size());
+                        counterText.setText(MessageFormat.format("{0} / {1}",
+                                        currentQuestionIndex, questionArrayList.size()));
                     }
                 });
     }
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void checkAnswer(boolean userChooseCorrect) {
         boolean answerIsTrue = questionList.get(currentQuestionIndex).isAnswerTrue();
-        int toastMessageId = 0;
+        int toastMessageId;
         if(userChooseCorrect == answerIsTrue) {
             fadeView();
             addPoints();
