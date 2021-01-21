@@ -16,7 +16,7 @@ import java.util.List;
 public class QuestionBank {
 
     ArrayList<Question> questionArrayList = new ArrayList<>();
-    private String url =
+    public String url =
             "https://raw.githubusercontent.com/curiousily/simple-quiz/master/script/statements-data.json";
 
     public List<Question> getQuestions(final AnswerListAsyncResponse callBack) {

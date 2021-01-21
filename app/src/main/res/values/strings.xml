@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">QuizApp</string>
+    <string name="app_name">Quiz</string>
     <string name="app_title">Quiz</string>
 <!--    <string name="question_check">This is just a random text and it is not-->
 <!--    part of the quiz questions</string>-->
@@ -12,4 +12,5 @@
     <string name="high_score_text">10000</string>
     <string name="correct_answer">Correct!</string>
     <string name="wrong_answer">Wrong!</string>
+    <string name="error_api">ERROR READING FROM API</string>
 </resources>

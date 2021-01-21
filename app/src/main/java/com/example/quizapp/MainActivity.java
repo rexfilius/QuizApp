@@ -14,14 +14,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.quizapp.data.AnswerListAsyncResponse;
 import com.example.quizapp.data.QuestionBank;
 import com.example.quizapp.model.Question;
 import com.example.quizapp.model.Score;
 import com.example.quizapp.util.Prefs;
 
 import java.text.MessageFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -64,28 +62,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         nextButton.setOnClickListener(this);
 
         scoreText.setText(MessageFormat.format("Current Score: {0}",
-                                                String.valueOf(score.getScore())));
+                String.valueOf(score.getScore())));
         currentQuestionIndex = prefs.getState();
         highscoreText.setText(MessageFormat.format("Highest Score: {0}",
-                                                    String.valueOf(prefs.getHighScore())));
+                String.valueOf(prefs.getHighScore())));
 
         questionList =
-                new QuestionBank().getQuestions(new AnswerListAsyncResponse() {
-                    @Override
-                    public void processFinished(ArrayList<Question> questionArrayList) {
-                        questionText.setText(
-                                questionArrayList.get(currentQuestionIndex).getAnswer());
-                        counterText.setText(MessageFormat.format("{0} / {1}",
-                                        currentQuestionIndex, questionArrayList.size()));
-                    }
+                new QuestionBank().getQuestions(questionArrayList -> {
+                    questionText.setText(
+                            questionArrayList.get(currentQuestionIndex).getAnswer());
+                    counterText.setText(MessageFormat.format("{0} / {1}",
+                            currentQuestionIndex, questionArrayList.size()));
                 });
     }
 
     @Override
     public void onClick(View v) {
-        switch(v.getId()) {
+        switch (v.getId()) {
             case R.id.previous_button:
-                if(currentQuestionIndex > 0) {
+                if (currentQuestionIndex > 0) {
                     currentQuestionIndex = (currentQuestionIndex - 1) % questionList.size();
                     updateQuestion();
                 }
@@ -107,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkAnswer(boolean userChooseCorrect) {
         boolean answerIsTrue = questionList.get(currentQuestionIndex).isAnswerTrue();
         int toastMessageId;
-        if(userChooseCorrect == answerIsTrue) {
+        if (userChooseCorrect == answerIsTrue) {
             fadeView();
             addPoints();
             toastMessageId = R.string.correct_answer;
@@ -123,21 +118,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scoreCounter += 100;
         score.setScore(scoreCounter);
         scoreText.setText(MessageFormat.format("Current Score: {0}",
-                                                String.valueOf(score.getScore())));
+                String.valueOf(score.getScore())));
     }
 
     private void deductPoints() {
         scoreCounter -= 100;
-        if(scoreCounter > 0) {
+        if (scoreCounter > 0) {
             score.setScore(scoreCounter);
             scoreText.setText(MessageFormat.format("Current Score: {0}",
-                                                    String.valueOf(score.getScore())));
+                    String.valueOf(score.getScore())));
         } else {
             // TODO: check this assignment of scoreCounter = 0
             scoreCounter = 0;
             score.setScore(scoreCounter);
             scoreText.setText(MessageFormat.format("Current Score: {0}",
-                                                    String.valueOf(score.getScore())));
+                    String.valueOf(score.getScore())));
         }
 
     }
@@ -146,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String question = questionList.get(currentQuestionIndex).getAnswer();
         questionText.setText(question);
         counterText.setText(MessageFormat.format("{0} / {1}",
-                                currentQuestionIndex, questionList.size()));
+                currentQuestionIndex, questionList.size()));
     }
 
     private void goNext() {
@@ -163,7 +158,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void fadeView() {
         final CardView cardView = findViewById(R.id.question_card);
-        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f,0.0f);
+        AlphaAnimation alphaAnimation = new AlphaAnimation(1.0f, 0.0f);
 
         alphaAnimation.setDuration(350);
         alphaAnimation.setRepeatCount(1);
